@@ -202,3 +202,5 @@ $livre2->setAuthor($auteur1);
 
 <h4>vérifier l'auteur du livre 3</h4>
 <p> L'auteur du livre <?php echo $livre3->getTitle(); ?> est <?php echo $livre3->getAuthor(); ?></p>
+
+<h1>NON FORCÉMENNNNT</h1>
