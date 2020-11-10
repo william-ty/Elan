@@ -2,23 +2,40 @@
 
 class Author {
 
-    private $author;
+    private $authorName;
+    private $authorSurname;
+    private $books;
 
-    public function __construct(string $author = "inconnu") {
-        $this->author = $author;
+    public function __construct(string $authorName = "Prénom inconnu", $authorSurname = "Nom inconnu", Book $books = NULL) {
+        $this->authorNamme = $authorName;
+        $this->authorSurname = $authorSurname;
+        $this->author = $this->authorNamme. " ". $this->authorSurname;
+        $this->books = $books;
     }
 
-    public function getAuthor(){
-        return $this->author;
+    public function getAuthorName(){
+        return $this->authorName;
     }
 
-    public function setauthor( string $author){
-        $this->author = $author;
+    public function setAuthorName( string $authorName){
+        $this->authorName = $authorName;
         return $this;
     }
+    public function getAuthorSurname(){
+        return $this->authorSurname;
+    }
 
+  public function setAuthorSurname( string $authorSurname){
+        $this->authorSurname = $authorSurname;
+        return $this;
+    }
+    // Get Author getAuthorSurname & getAuthorName
+    public function getAuthor(){
+        return $this->authorName;
+    }
     public function __toString(){
-        return "This author is " . $this->author;
+        return "This author is " . $this->author . "</br>" . "Books : "
+        ;
     }
 }
 
@@ -31,7 +48,9 @@ class Book {
     private $dateOfPublication;
     private $price;
 
-    public function __construct(string $title = "N/A", Mark $author = NULL, int $dateOfPublication = 0, int $price = 0) {
+
+    
+    public function __construct(string $title = "N/A", Author $author = NULL, int $dateOfPublication = 0, int $price = 0) {
         $this->title = $title;
         $this->author = $author;
         $this->dateOfPublication= $dateOfPublication;
@@ -79,10 +98,14 @@ class Book {
     }
 }
 
-$author = new Author ("Stephen Kings");
-echo $author;
-$book = new Book;
+$auteur = new Author("David", "Vanmak");
 
-$book->setTitle("Yugiyo");
-echo $book->getTitle();
+$auteur->setAuthorName("Stephen");
+$auteur->setAuthorSurname("King");
+
+echo $auteur->getAuthorSurname();
+echo $auteur->getAuthorName();
+
+echo $auteur;
+
 ?>
