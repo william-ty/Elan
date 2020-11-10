@@ -4,6 +4,7 @@ class Author
 {
   private $name;
   private $firstName;
+  private $books;
 
   public function __construct(
     string $firstName = "Prénom inconnu",
@@ -11,7 +12,7 @@ class Author
   ) {
     $this->firstName = $name;
     $this->lastName = $firstName;
-    $this->booksArray = [];
+    $this->books = [];
   }
 
   // Getter
@@ -47,10 +48,10 @@ class Author
   // Get books
   public function getBooks()
   {
-    if (count($this->booksArray) == 0) {
-      return count($this->booksArray);
+    if (count($this->books) == 0) {
+      return count($this->books);
     } else {
-      foreach ($this->booksArray as $book) {
+      foreach ($this->books as $book) {
         echo $book->getTitle();
       }
     }
@@ -60,7 +61,7 @@ class Author
 
   public function addBook(Book $book)
   {
-    array_push($this->booksArray, $book);
+    array_push($this->books, $book);
     // Define author in book
   }
 
@@ -77,6 +78,7 @@ class Book
   private $author;
   private $dateOfPublication;
   private $price;
+  
 
   public function __construct(
     string $title = "N/A",
@@ -88,6 +90,7 @@ class Book
     $this->author = $author;
     $this->dateOfPublication = $dateOfPublication;
     $this->price = $price;
+    $this->author->addBook($this);
   }
   public function getTitle()
   {
