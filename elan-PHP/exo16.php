@@ -4,13 +4,16 @@ class Author {
 
     private $authorName;
     private $authorSurname;
-    private $books;
+    // private $books;
 
-    public function __construct(string $authorName = "Prénom inconnu", $authorSurname = "Nom inconnu", Book $books = NULL) {
+    public function __construct(string $authorName = "Prénom inconnu", $authorSurname = "Nom inconnu") {
         $this->authorNamme = $authorName;
         $this->authorSurname = $authorSurname;
-        $this->author = $this->authorNamme. " ". $this->authorSurname;
-        $this->books = $books;
+        $this->books = [];
+        
+
+
+
     }
 
     public function getAuthorName(){
@@ -25,18 +28,32 @@ class Author {
         return $this->authorSurname;
     }
 
-  public function setAuthorSurname( string $authorSurname){
-        $this->authorSurname = $authorSurname;
+    public function setAuthorSurname( string $aurthorSurname){
+        $this->aurthorSurname = $aurthorSurname;
         return $this;
     }
+
     // Get Author getAuthorSurname & getAuthorName
     public function getAuthor(){
-        return $this->authorName;
+       return  $this->getAuthorName(). " ". $this->getAuthorSurname();
     }
     public function __toString(){
-        return "This author is " . $this->author . "</br>" . "Books : "
-        ;
+        return "This author is " . $this->getAuthor() . "</br>" . "Books : ";
     }
+
+    // Get books 
+
+    public function getBooks(){
+        foreach ($this->books as $book => $i) {
+            echo "$key => $val \n";
+        }
+    }
+
+    // Add Book
+
+        public function addBooks( Book $book){
+            array_push($this->books,$book);
+        }
 }
 
 
@@ -100,12 +117,8 @@ class Book {
 
 $auteur = new Author("David", "Vanmak");
 
-$auteur->setAuthorName("Stephen");
-$auteur->setAuthorSurname("King");
-
-echo $auteur->getAuthorSurname();
-echo $auteur->getAuthorName();
-
 echo $auteur;
+
+
 
 ?>
