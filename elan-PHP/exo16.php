@@ -1,124 +1,161 @@
 <?php
 
-class Author {
+class Author
+{
+  private $name;
+  private $firstName;
 
-    private $authorName;
-    private $authorSurname;
-    // private $books;
+  public function __construct(
+    string $firstName = "Prénom inconnu",
+    $name = "Nom inconnu"
+  ) {
+    $this->firstName = $name;
+    $this->lastName = $firstName;
+    $this->books = [];
+  }
 
-    public function __construct(string $authorName = "Prénom inconnu", $authorSurname = "Nom inconnu") {
-        $this->authorNamme = $authorName;
-        $this->authorSurname = $authorSurname;
-        $this->books = [];
-        
+  // Getter
+  public function getFirstName()
+  {
+    return $this->firstName;
+  }
 
+  public function getLastName()
+  {
+    return $this->lastName;
+  }
 
+  // Setter
+  public function setFirstName($firstName)
+  {
+    $this->firstName = $firstName;
+    return $this;
+  }
 
+  public function setLastName($lastName)
+  {
+    $this->lastName = $lastName;
+    return $this->lastName;
+  }
+
+  // Get Author
+  public function getAuthor()
+  {
+    return $this->getFirstName() . " " . $this->getLastName();
+  }
+
+  // Get books
+  public function getBooks()
+  {
+    foreach ($this->books as $book => $i) {
+      echo $book->getTitle() . " \n";
     }
+  }
 
-    public function getAuthorName(){
-        return $this->authorName;
-    }
+  // Add Book
 
-    public function setAuthorName( string $authorName){
-        $this->authorName = $authorName;
-        return $this;
-    }
-    public function getAuthorSurname(){
-        return $this->authorSurname;
-    }
+  // public function addBooks( Book$book){
+  // array_push($this->books,$book);}
 
-    public function setAuthorSurname( string $aurthorSurname){
-        $this->aurthorSurname = $aurthorSurname;
-        return $this;
-    }
-
-    // Get Author getAuthorSurname & getAuthorName
-    public function getAuthor(){
-       return  $this->getAuthorName(). " ". $this->getAuthorSurname();
-    }
-    public function __toString(){
-        return "This author is " . $this->getAuthor() . "</br>" . "Books : ";
-    }
-
-    // Get books 
-
-    public function getBooks(){
-        foreach ($this->books as $book => $i) {
-            echo "$key => $val \n";
-        }
-    }
-
-    // Add Book
-
-        public function addBooks( Book $book){
-            array_push($this->books,$book);
-        }
+  public function __toString()
+  {
+    return "This author is " . $this->getAuthor() . "</br>" . "Books : ";
+  }
 }
-
 
 // Books
-class Book {
- 
-    private $title;
-    private $author;
-    private $dateOfPublication;
-    private $price;
+class Book
+{
+  private $title;
+  private $author;
+  private $dateOfPublication;
+  private $price;
 
+  public function __construct(
+    string $title = "N/A",
+    Author $author = null,
+    int $dateOfPublication = 0,
+    int $price = 0
+  ) {
+    $this->title = $title;
+    $this->author = $author;
+    $this->dateOfPublication = $dateOfPublication;
+    $this->price = $price;
+  }
+  public function getTitle()
+  {
+    return $this->title;
+  }
 
-    
-    public function __construct(string $title = "N/A", Author $author = NULL, int $dateOfPublication = 0, int $price = 0) {
-        $this->title = $title;
-        $this->author = $author;
-        $this->dateOfPublication= $dateOfPublication;
-        $this->price= $price;
-    }
-    public function getTitle(){
-        return $this->title;
-    }
+  public function setTitle(string $title)
+  {
+    $this->title = $title;
+    return $this;
+  }
 
-    public function setTitle( string $title){
-        $this->title = $title;
-        return $this;
-    }
+  public function getAuthor()
+  {
+    return $this->author;
+  }
 
+  public function setAuthor(string $author)
+  {
+    $this->author = $author;
+    return $this;
+  }
 
-    public function getAuthor(){
-        return $this->author;
-    }
+  public function getDateOfPublication()
+  {
+    return $this->dateOfPublication;
+  }
 
-    public function setAuthor(string $author){
-        $this->author = $author;
-        return $this;
-    }
+  public function setDateOfPublication(int $dateOfPublication)
+  {
+    $this->dateOfPublication = $dateOfPublication;
+    return $this;
+  }
 
-    public function getDateOfPublication(){
-        return $this->dateOfPublication;
-    }
+  public function getPrice()
+  {
+    return $this->price;
+  }
 
-    public function setDateOfPublication(int $dateOfPublication){
-        $this->dateOfPublication = $dateOfPublication;
-        return $this;
-    }
+  public function setPrice(int $price)
+  {
+    $this->price = $price;
+    return $this;
+  }
 
-    public function getPrice(){
-        return $this->price;
-    }
-
-    public function setPrice(int $price){
-        $this->price = $price;
-        return $this;
-    }
-
-    public function __toString(){
-        return "L'auteur est  ".$this->getAuthor(). "<br/>". " Titre: ".$this->getTitle()."<br/>"." Date de publication ".$this->getDateOfPublication()."<br/>"." Cost ".$this->getPrice();
-    }
+  public function __toString()
+  {
+    return "L'auteur est  " .
+      $this->getAuthor() .
+      "<br/>" .
+      " Titre: " .
+      $this->getTitle() .
+      "<br/>" .
+      " Date de publication " .
+      $this->getDateOfPublication() .
+      "<br/>" .
+      " Cost " .
+      $this->getPrice();
+  }
 }
 
-$auteur = new Author("David", "Vanmak");
+$auteur = new Author("Stephen", "KING");
 
-echo $auteur;
+echo $auteur->getFirstName() . " <br>";
 
+echo $auteur->getLastName();
 
+$auteur->setFirstName("David");
+echo $auteur->getFirstName();
+
+$auteur->setLastName("vanmak");
+echo $auteur->getLastName();
+
+// $auteur->setAuthorSurname("David");
+
+echo $auteur->getAuthor();
 
 ?>
